@@ -1,0 +1,45 @@
+[
+  {
+    "service_type": "email8:store",
+    "binary": "email8-store"
+  },
+  {
+    "service_type": "email8:mta",
+    "binary": "email8-mta",
+    "extra_env": {
+      "EMAIL8_MTA_ACCEPT_PROXY": "true"
+    }
+  },
+  {
+    "service_type": "email8:access",
+    "binary": "email8-access",
+    "start_priority": 50,
+    "extra_env": {
+      "EMAIL8_ACCESS_ACCEPT_PROXY": "true"
+    }
+  },
+  {
+    "service_type": "email8:apps",
+    "binary": "email8-apps",
+    "start_priority": 100
+  },
+  {
+    "service_type": "email8:gate",
+    "binary": "email8-gate",
+    "fixed_port": 8103,
+    "upgrade_stop_first": true,
+    "extra_env": {
+      "EMAIL8_GATE_SMTP_PORT": "25",
+      "EMAIL8_GATE_SUBMISSION_PORT": "587",
+      "EMAIL8_GATE_SUBMISSIONS_PORT": "465",
+      "EMAIL8_GATE_IMAP_PORT": "143",
+      "EMAIL8_GATE_IMAPS_PORT": "993",
+      "EMAIL8_GATE_POP3_PORT": "110",
+      "EMAIL8_GATE_POP3S_PORT": "995",
+      "EMAIL8_GATE_SIEVE_PORT": "4190",
+      "EMAIL8_GATE_PROXY_PROTO": "true",
+      "EMAIL8_GATE_MTA_UPSTREAMS": "email8-mta:smtp,submission,submissions",
+      "EMAIL8_GATE_ACCESS_UPSTREAMS": "email8-access:imap,imaps,pop3,pop3s,sieve"
+    }
+  }
+]
