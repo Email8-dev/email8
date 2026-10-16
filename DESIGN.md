@@ -37,6 +37,10 @@ graph TD
   `m2m-{workload}` is the identity — no M2M token exists on the wire).
 - Enrollment: composable — each repo ships `service-registration.json`;
   `sentin8-cli vertical enroll email8-ledger/ …` registers any subset.
+  Each Rust service's fragment declares its `telemetry_property`
+  (slug + name) — the CLI seeds `stat.properties` on the platform DB
+  at init/enroll (TELESEED-1; a vertical's own init SQL can never
+  reach the platform database).
 
 ### 2.1 Valkey plane (platform group DESIGN.md §3.1)
 
@@ -55,7 +59,14 @@ namespace, provisioned via the email8 enroll fragment's `valkey` section
 One database per vertical (`email8`), schema-per-service, RLS mandatory, all
 access via per-service OAuth-mapped PG roles — created by the CLI from
 each repo's `--print-registration` output + `service-registration.json`
-fragment (RS §6).
+fragment (RS §6). Tiering (PROVRLS-1 —
+`../design/sentin8-provisioned-rls-and-telemetry-design.md`): account
+tables holder-or-admin, config tables env-tier, `principals` the
+env-tier root (SELECT additionally admits the auth-user holder-match),
+and `email8.domains` NO-RLS as the pre-tenant mail-domain→env
+discovery catalog (the bank8-fdx `provider_profiles` precedent). The
+tenant context is transaction-local — every stamp + query sequence runs
+inside one explicit transaction.
 
 ## 4. Invariants
 

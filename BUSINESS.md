@@ -27,6 +27,11 @@ and KPIs.
 2. Every tenant action is authorized via Shield (platform) and audited.
 3. Domain data lives in the `email8` database only — no platform-table
    access beyond the enroll-provisioned substrate.
+4. Every new Sentin8:Auth user with an email address automatically gets
+   a mail account: the `sentin8:auth:user:created` event provisions a
+   principal + INBOX/Trash/Junk/Drafts/Sent/Archive mailboxes within
+   seconds of sign-up, idempotently (a redelivered event never
+   duplicates).
 
 ## 4. Dependencies & Reliance on Other Services
 
