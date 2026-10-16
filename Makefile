@@ -14,6 +14,16 @@
 SHELL := /bin/bash
 CARGO ?= cargo
 
+# Build identity stamps (BUILDID-1, sentin8-build-info README §3): the
+# stamps ride the SAME shell line as the cargo command — make runs each
+# recipe line in its own shell, so a standalone `export …` line would
+# evaporate before cargo starts. The hash resolves via PLAIN `git
+# rev-parse` (no -C path): the stamp expands AFTER the `cd` into the
+# repo, so a repo-relative `git -C` would resolve from INSIDE and miss
+# (stamping every binary EMPTY). Inside the build-services loop the
+# `cd email8-$$s` has already happened when the prefix expands.
+stamp_env = SENTIN8_BUILD_PROFILE=$(if $(RELEASE),release,debug) SENTIN8_GIT_SHA=$$(git rev-parse --short HEAD 2>/dev/null)
+
 SERVICES := access gate mta store
 APPS := webmail
 
@@ -26,20 +36,20 @@ help: ## Show this help
 build: build-sdk build-services ## Build the group in DAG order
 
 build-sdk: ## Build the email8 facade workspace (services depend on this)
-	@cd email8-sdk && $(CARGO) build
+	@cd email8-sdk && $(call stamp_env,email8-sdk) $(CARGO) build
 
 build-services: build-sdk ## Build every email8 service repo
 	@for s in $(SERVICES); do \
 		echo "=== email8-$$s ==="; \
-		(cd email8-$$s && $(CARGO) build) || exit 1; \
+		(cd email8-$$s && $(call stamp_env,email8-$$s) $(CARGO) build) || exit 1; \
 	done
 
 test: ## Run the SDK facade tests + per-service suites
-	@cd email8-sdk && $(CARGO) test
-	@for s in $(SERVICES); do (cd email8-$$s && $(CARGO) test) || true; done
+	@cd email8-sdk && $(call stamp_env,email8-sdk) $(CARGO) test
+	@for s in $(SERVICES); do (cd email8-$$s && $(call stamp_env,email8-$$s) $(CARGO) test) || true; done
 
 enroll: ## Enroll every email8 repo (composable registration, RS §6)
-	@cd ../sentin8/sentin8-cli && $(CARGO) run --bin sentin8-cli -- vertical enroll \
+	@cd ../sentin8/sentin8-cli && $(call stamp_env,sentin8-cli) $(CARGO) run --bin sentin8-cli -- vertical enroll \
 		$(patsubst %,../../email8/email8-%,$(SERVICES)) \
 		$(patsubst %,../../email8/email8-%,$(APPS))
 
