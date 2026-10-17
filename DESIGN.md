@@ -79,6 +79,17 @@ inside one explicit transaction.
 Per-repo unit/integration suites (`make test`); cross-vertical flows via
 `../sentin8/sentin8-e2e`.
 
+## 5.1 Fleet-run scope (group operations, STARTSCOPE-1)
+
+The group Makefile's `make start` boots ONLY the platform base
+(`sentin8:acme, sentin8:auth, sentin8:proxy, sentin8:bus, sentin8:sys,
+sentin8:bff, sentin8:web`) plus this group's services — the
+`SENTIN8_SERVICES` boot pin when captain is down, the idempotent
+`captain start <types>` API form when it is up. `make stop` stops only
+this group's instance rows (the captain and platform stay up). The
+full rule (service / group / tree-root scopes and the platform-scoped
+dev reset): `design/sentin8-repository-split-design.md` §4.5.2.
+
 ## 6. Open Questions
 
 - Platform-API drift sync where applicable (see split backlog, e.g.
