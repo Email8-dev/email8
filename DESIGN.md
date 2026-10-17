@@ -1,4 +1,4 @@
-# DESIGN.md: email8/ — Email Vertical Group
+# email8/ — Email Vertical Group
 
 > Group-level design document for the Email vertical. Service-level
 > design docs live in each repo (`email8-*/DESIGN.md`). The repository-split

@@ -1,4 +1,4 @@
-# BUSINESS.md: email8/ — Email Vertical Group
+# email8/ — Email Vertical Group
 
 > Business requirements & functionality of the Email vertical at the
 > GROUP level. Service-level BUSINESS docs live in each repo.
