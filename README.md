@@ -1,8 +1,8 @@
-# Email8 — Sentin8 email vertical
+# Email8 - Sentin8 email vertical
 
 A modern mail server built on Sentin8: four Rust services providing
 SMTP, JMAP/IMAP/POP3 mail access, queueing, and client
-auto-configuration — with identity, storage, events, TLS, and tenancy
+auto-configuration - with identity, storage, events, TLS, and tenancy
 delegated to the platform.
 
 ## Services
@@ -52,11 +52,11 @@ make start        # via root Makefile → Sentin8:Captain
 
 ## Design docs
 
-- `design/sentin8-email8-technical-design.md` — master design
-- `design/sentin8-email8-store-technical-design.md` — data model
-- `design/sentin8-email8-mta-technical-design.md` — SMTP/queue
-- `design/sentin8-email8-access-technical-design.md` — IMAP/POP3/Sieve/DAV
-- `design/sentin8-email8-integration-and-migration-technical-design.md` — platform gaps + rollout
+- `design/sentin8-email8-technical-design.md` - master design
+- `design/sentin8-email8-store-technical-design.md` - data model
+- `design/sentin8-email8-mta-technical-design.md` - SMTP/queue
+- `design/sentin8-email8-access-technical-design.md` - IMAP/POP3/Sieve/DAV
+- `design/sentin8-email8-integration-and-migration-technical-design.md` - platform gaps + rollout
 
 ## Status
 
@@ -71,7 +71,7 @@ groupware, webmail).
 ## Website
 
 The public website at **email8.dev** lives in the sibling
-`email8-site` repo — Docusaurus v3 on `@sentin8/site-engine`, with
+`email8-site` repo - Docusaurus v3 on `@sentin8/site-engine`, with
 product/app/SDK pages and a Reference section harvested at build time
 from these repositories (program design:
 `../design/sentin8-websites-design.md`).
