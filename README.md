@@ -60,7 +60,7 @@ make start        # via root Makefile → Sentin8:Captain
 
 ## Status
 
-P0/P1 complete (skeleton + core flows). See `BACKLOG.md` for the Epic 3–6
+P0/P1 complete (skeleton + core flows). See `BACKLOG.md` for the Epic 3-6
 roadmap (DKIM signing, remote delivery, full IMAP parity, POP3/Sieve,
 groupware, webmail).
 
