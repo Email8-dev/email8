@@ -1,5 +1,7 @@
 # email8/ - Email Vertical Group
 
+> Secure Post-Quantum-Safe Email Platform That Heals and Scales Itself.
+
 > Business requirements & functionality of the Email vertical at the
 > GROUP level. Service-level BUSINESS docs live in each repo.
 

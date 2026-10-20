@@ -1,5 +1,7 @@
 # email8/ - Email Vertical Group
 
+> Secure Post-Quantum-Safe Email Platform That Heals and Scales Itself.
+
 > Group-level design document for the Email vertical. Service-level
 > design docs live in each repo (`email8-*/DESIGN.md`). The repository-split
 > design of record: `../design/sentin8-repository-split-design.md`.

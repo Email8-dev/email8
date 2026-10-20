@@ -1,5 +1,7 @@
 # Email8 - Sentin8 email vertical
 
+> Secure Post-Quantum-Safe Email Platform That Heals and Scales Itself.
+
 A modern mail server built on Sentin8: four Rust services providing
 SMTP, JMAP/IMAP/POP3 mail access, queueing, and client
 auto-configuration - with identity, storage, events, TLS, and tenancy
