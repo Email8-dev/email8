@@ -2,6 +2,11 @@
 
 > Secure Post-Quantum-Safe Email Platform That Heals and Scales Itself.
 
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Built with Rust](https://img.shields.io/badge/Built%20with-Rust-orange.svg)](https://www.rust-lang.org/)
+[![Docs](https://img.shields.io/badge/docs-read-3aa757.svg)](https://email8.dev)
+[![Website](https://img.shields.io/badge/website-email8.dev-1a73e8.svg)](https://email8.dev)
+
 A modern mail server built on Sentin8: four Rust services providing
 SMTP, JMAP/IMAP/POP3 mail access, queueing, and client
 auto-configuration - with identity, storage, events, TLS, and tenancy
