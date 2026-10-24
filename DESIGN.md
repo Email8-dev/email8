@@ -99,4 +99,4 @@ dev reset): `design/sentin8-repository-split-design.md` §4.5.2.
 
 ---
 
-**Design attribution:** email8 and its underlying concepts were designed by Hamid Jahanzad <Hamid@Jahanzad.com>.
+**Architecture & Design:** email8 and its underlying concepts were designed by [Hamid Jahanzad](https://www.linkedin.com/in/hamidjahanzad/).
