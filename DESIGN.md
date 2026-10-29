@@ -31,17 +31,17 @@ graph TD
 ## 2. Dependency Contract
 
 - Every service repo: `sentin8` (platform facade) + `email8` (vertical facade)
-  git pins only - zero path deps (RS-5), zero platform-DB roles beyond the
+  git pins only - zero path deps, zero platform-DB roles beyond the
   enroll-provisioned substrate (VDC).
 - Event ownership: every `email8:…` event's first segment is `email8` -
   Bus's produce gate enforces it; the vertical claim is the service's
-  **certificate identity** (CERTFREE-1: the TLS client certificate CN
+  **certificate identity** (the TLS client certificate CN
   `m2m-{workload}` is the identity - no M2M token exists on the wire).
 - Enrollment: composable - each repo ships `service-registration.json`;
   `sentin8-cli vertical enroll email8-ledger/ …` registers any subset.
   Each Rust service's fragment declares its `telemetry_property`
   (slug + name) - the CLI seeds `stat.properties` on the platform DB
-  at init/enroll (TELESEED-1; a vertical's own init SQL can never
+  at init/enroll (a vertical's own init SQL can never
   reach the platform database).
 
 ### 2.1 Valkey plane (platform group DESIGN.md §3.1)
@@ -61,7 +61,7 @@ namespace, provisioned via the email8 enroll fragment's `valkey` section
 One database per vertical (`email8`), schema-per-service, RLS mandatory, all
 access via per-service OAuth-mapped PG roles - created by the CLI from
 each repo's `--print-registration` output + `service-registration.json`
-fragment (RS §6). Tiering (PROVRLS-1 -
+fragment (RS §6). Tiering (-
 `../design/sentin8-provisioned-rls-and-telemetry-design.md`): account
 tables holder-or-admin, config tables env-tier, `principals` the
 env-tier root (SELECT additionally admits the auth-user holder-match),
@@ -81,7 +81,7 @@ inside one explicit transaction.
 Per-repo unit/integration suites (`make test`); cross-vertical flows via
 `../sentin8/sentin8-e2e`.
 
-## 5.1 Fleet-run scope (group operations, STARTSCOPE-1)
+## 5.1 Fleet-run scope (group operations,)
 
 The group Makefile's `make start` boots ONLY the platform base
 (`sentin8:acme, sentin8:auth, sentin8:proxy, sentin8:bus, sentin8:sys,
@@ -94,8 +94,8 @@ dev reset): `design/sentin8-repository-split-design.md` §4.5.2.
 
 ## 6. Open Questions
 
-- Platform-API drift sync where applicable (see split backlog, e.g.
-  email8's RS-10).
+- Platform-API drift sync where applicable (see the split design,
+  email8's).
 
 ---
 
