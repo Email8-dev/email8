@@ -66,7 +66,7 @@ fragment (RS §6). Tiering (-
 tables holder-or-admin, config tables env-tier, `principals` the
 env-tier root (SELECT additionally admits the auth-user holder-match),
 and `email8.domains` NO-RLS as the pre-tenant mail-domain→env
-discovery catalog (the bank8-fdx `provider_profiles` precedent). The
+discovery catalog (the openfin8-ca `provider_profiles` precedent). The
 tenant context is transaction-local - every stamp + query sequence runs
 inside one explicit transaction.
 
